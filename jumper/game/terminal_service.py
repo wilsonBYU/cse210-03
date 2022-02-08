@@ -1,3 +1,7 @@
+from os import name, system
+import sys
+from time import sleep
+
 class TerminalService:
     """A service that handles terminal operations.
     
@@ -37,3 +41,21 @@ class TerminalService:
             text (string): The text to display.
         """
         print(text)
+        
+    def clear(self):
+        if name == "nt":
+            system("cls")
+        else:
+            system("clear")
+            
+    def print_reversed_animation(self, lines_list):
+        reversed_list = []
+        for section in lines_list:
+            section_copy = section.copy()
+            section_copy.reverse()
+            for line in section:
+                reversed_list.insert(0,section_copy.pop(0))
+                print("\n".join(reversed_list))
+                sleep(0.1)    
+                self.clear()    
+        

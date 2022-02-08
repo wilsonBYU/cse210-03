@@ -44,26 +44,23 @@ class Puzzle:
 
             index += 1
 
-        return self._hidden_letters
+        return " ".join(self._hidden_letters)+"\n"
 
     def compare_letters(self,incoming_letter):
         """Find out if guessed letter is in list.
         Returns True or False"""
-
         incoming_letter = incoming_letter.upper()
-        self.update_word_letter_list(incoming_letter)
         if incoming_letter in self._letters:
+            self.update_word_letter_list(incoming_letter)
             return True
         else:
-            return False
-        
+            return False   
 
     def update_word_letter_list(self, letter):
         ''' Adds a new letter to the word list
 
         '''
         self._guessed_letters.append(letter.upper())
-
 
     def generate_hidden_word_letter_list(self, word):
         ''' Used to set the current word and generates

@@ -23,7 +23,6 @@ class Jumper:
         """
 
         self._jumper = [
-                    "",
                     "  ___",
                     " /___\\",
                     " \\   /",
@@ -35,19 +34,18 @@ class Jumper:
                     "^^^^^^^"
                 ]
 
-
     def guessed_wrong(self):
-
-        self._jumper.pop(1)
-        if len(self._jumper) <= 6:
-            self._jumper.pop(1)
-            self._jumper.insert(1, "   x")
-
-
+        if len(self._jumper) <= 5:
+            self._jumper.pop(0)
+            self._jumper.insert(0, "   x")
+        else:
+            self._jumper.pop(0)
+            
+    def remaining_attempts_count(self):
+        return len(self._jumper)-6
+            
     def remaining_attempts(self):
-
-        return (len(self._jumper) <= 5)
-
+        return (len(self._jumper) >= 6)
 
     def get_jumper_image(self):
         """Gets the image of the Jumper.
@@ -59,4 +57,4 @@ class Jumper:
         Returns:
         --------
             dictionary: An image of the remaining parachute."""
-        return "\n".join(self._jumper)
+        return self._jumper
