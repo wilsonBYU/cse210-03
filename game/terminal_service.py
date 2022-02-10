@@ -52,7 +52,7 @@ class TerminalService:
             -----
             self (TerminalService): An instance of TerminalService.
             lines_list (Any): The list of lines received from Instructions that creates the game title and win or lose message.
-            """
+        """
         reversed_list = []
         for section in lines_list:
             section_copy = section.copy()
