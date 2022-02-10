@@ -11,30 +11,46 @@ class Puzzle:
 
 
     Attributes:
-        word_letter_list (list[str]): A list that holds the selected letters from
-        the user.
+    -----------
+    _guessed_letters (list[str]): A list that holds the selected letters from
+    the user.
 
-        current_word_letter_list (list[str]): A list that holds each letter in order
-        from the current word
+    _letters (list[str]): A list that holds each letter in order
+    from the current word
 
-        word_hidden_letter_list (list[str]): A list that holds underscores as placeholders
-        unless the word_letter_list contains a character from the current_word_letter_list.
+    _hidden_letters (list[str]): A list that holds underscores as placeholders
+    unless if the _guessed_letters list contains a character from the _letters list.
 
     """
 
     def __init__(self, word=""):
-        self._guessed_letters = [] # This doesn't need to be a list.
-        self._letters = [] 
-        self._hidden_letters = [] # Gets display to player
+        """Constructs a new Puzzle.
+
+            Args:
+            -----
+            self (Puzzle): An instance of Puzzle.
+            word (str): A random word received from Director.
+        """
+        self._guessed_letters = []
+        self._letters = []
+        self._hidden_letters = []
         if word != "":
-            self.generate_hidden_word_letter_list(word)
+            self.generate_hidden_letters(word)
 
-    def get_word_hidden_list(self):
-        ''' Returns the hidden word list with only
-            the letters in the word letter list
-            revealed
+    def get_hidden_letters(self):
+        """Returns the hidden letter list with only
+        the letters in the guessed lettes list
+        revealed.
 
-        '''
+        Args:
+        -----
+        self (Puzzle): An instance of Puzzle.
+
+        Returns:
+        --------
+        list[str]: The _hidden_letter list joined with spaces.
+        """
+
         index = 0
         for i in self._letters:
             if i in self._guessed_letters:
@@ -46,28 +62,45 @@ class Puzzle:
 
         return " ".join(self._hidden_letters)+"\n"
 
-    def compare_letters(self,incoming_letter):
-        """Find out if guessed letter is in list.
-        Returns True or False"""
+    def compare_letters(self, incoming_letter):
+        """Finds out if the letter provided by the user is in the list.
+
+        Returns True or False
+
+        Args:
+        -----
+        self (Puzzle): An instance of Puzzle.
+        incoming_letter (str): The letter guessed by the user.
+        """
+
         incoming_letter = incoming_letter.upper()
         if incoming_letter in self._letters:
-            self.update_word_letter_list(incoming_letter)
+            self.update_guessed_letters(incoming_letter)
             return True
         else:
-            return False   
+            return False
 
-    def update_word_letter_list(self, letter):
-        ''' Adds a new letter to the word list
+    def update_guessed_letters(self, letter):
+        """Adds a new letter to the word list.
 
-        '''
+        Args:
+        -----
+        self (Puzzle): An instance of Puzzle.
+        letter (str): The letter guessed by the user.
+        """
         self._guessed_letters.append(letter.upper())
 
-    def generate_hidden_word_letter_list(self, word):
-        ''' Used to set the current word and generates
-            the hidden word list with all "_"
-            Clears all list
+    def generate_hidden_letters(self, word):
+        """Used to set the current word and generates
+        the hidden word list with all "_"
 
-        '''
+        Clears each list
+
+        Args:
+        -----
+        self (Puzzle): An instance of Puzzle.
+        word (str): A random word received from Director.
+        """
         self._guessed_letters.clear()
         self._hidden_letters.clear()
 

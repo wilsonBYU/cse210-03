@@ -1,25 +1,28 @@
 class Instructions:
-    """Class that holds all the usefull textx.
+    """Class that holds all the usefull text.
 
-        Args:
-        -----
-        self (Instructions): An instance of Instructions. 
+        Attributes:
+        -----------
+        _instructions list[str]: The games instructions.
+        _title list[str]: The games title.
+        _you_win list[str]: A message telling the player they won the game.
+        _you_lose list[str]: A message telling the player they lost the game.
     """
-    
+
     def __init__(self):
         """Initialize the Instructions class.
 
         Args:
         -----
-        self (Instructions): An instance of Instructions. 
+        self (Instructions): An instance of Instructions.
         """
         self._instructions = [
             "The purpose of the game is simple: Try to guess the hidden word letter by letter.",
-            "Every letter you guess will replace the underscores in the hidden word until it is completed", 
-            "If you don't gess the word you fail. But come on! There are always chances to win! (I guess)",
+            "Every letter you guess will replace the underscores in the hidden word until it is completed",
+            "If you don't guess the word you fail. But come on! There is always a chance you could win! I guess...",
             ""
         ]
-        
+
         self._title = [
             " _____ ",
             "/\___ \ ",
@@ -32,7 +35,7 @@ class Instructions:
             "                                 \/_/",
             ""
         ]
-        
+
         self._you_win = [
             " __    __                    __      __ ",
             "/\ \  /\ \                  /\ \  __/\ \  __ ",
@@ -43,7 +46,7 @@ class Instructions:
             "      \/_/\/___/  \/___/        '\/__//__/  \/_/\/_/\/_/",
             ""
         ]
-        
+
         self._you_lose = [
             " __    __                    __   ",
             "/\ \  /\ \                  /\ \ ",
@@ -60,32 +63,49 @@ class Instructions:
 
             Args:
             -----
-            self (Instructions): An instance of Instructions. 
+            self (Instructions): An instance of Instructions.
+
+            Returns:
+            --------
+            list[str]: The instructions to the game.
         """
         return self._instructions
-    
+
     def get_title(self):
         """Gets the title image.
 
             Args:
             -----
-            self (Instructions): An instance of Instructions. 
+            self (Instructions): An instance of Instructions.
+
+            Returns:
+            --------
+            list[str]: The game title.
         """
         return self._title
-        
+
     def get_you_win(self):
         """Gets the you win image.
+
             Args:
             -----
-            self (Instructions): An instance of Instructions. 
+            self (Instructions): An instance of Instructions.
+
+            Returns:
+            --------
+            list[str]: A message telling the player they won the game.
         """
         return self._you_win
-        
+
     def get_you_lose(self):
-        """Gets the you loose image.
+        """Gets the you lose image.
+
             Args:
             -----
-            self (Instructions): An instance of Instructions. 
+            self (Instructions): An instance of Instructions.
+
+            Returns:
+            --------
+            list[str]: A message telling the player they lost the game.
         """
         return self._you_lose
-    
