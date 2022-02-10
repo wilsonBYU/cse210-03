@@ -43,12 +43,25 @@ class TerminalService:
         print(text)
         
     def clear(self):
+
+        """Clear the screen
+
+        Args: 
+            self (TerminalService): An instance of TerminalService.
+        """
         if name == "nt":
             system("cls")
         else:
             system("clear")
             
     def print_reversed_animation(self, lines_list):
+        """Gets the list of lists and then print them in reverse order like if each line is falling down.
+
+        Args: 
+            self (TerminalService): An instance of TerminalService.
+            lines_list (list): A list of lists that contains each line to be printed in the screen.
+
+        """
         reversed_list = []
         for section in lines_list:
             section_copy = section.copy()

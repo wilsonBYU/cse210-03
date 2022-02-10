@@ -50,11 +50,11 @@ class Director:
             self._instructions.get_title()
         ]) #will print the parachuter, the instructions and title like they are falling
         while self._is_playing: #check if the game is still playable
-            self._do_outputs() #Print on the screen life cycle
-            self._get_inputs() #Get inputs from client life cycle
-            self._do_updates() #Do all the updates life cycle
+            self.do_outputs() #Print on the screen life cycle
+            self.get_inputs() #Get inputs from client life cycle
+            self.do_updates() #Do all the updates life cycle
 
-    def _get_inputs(self):
+    def get_inputs(self):
         """Get inputs life cycle.
         
             Args:
@@ -65,7 +65,7 @@ class Director:
             self._chosen_letter = self._terminal_service.read_text("Guess a letter [a-z]: ") #Ask for user letter
             self._terminal_service.clear() #clear the terminal window
         
-    def _do_updates(self):
+    def do_updates(self):
         """Do updates life cycle.
         
             Args:
@@ -76,7 +76,7 @@ class Director:
             if self._puzzle.compare_letters(self._chosen_letter): #Check if the user leter is correct or not and return true or false
                 self._terminal_service.write_text(f"You guessed a letter! You have {self._jumper.remaining_attempts_count()} remaining attemps!") #if the letter is in the list then print that in the screen
                 if not "_" in self._puzzle.get_word_hidden_list(): #if there are no underscore in the hidden list means that the user guess all the letters
-                    self._do_outputs() #print the parachuter image
+                    self.do_outputs() #print the parachuter image
                     self._is_playing = False #change the is playing to false becuase the user guessed the word so the game is over
                     self._terminal_service.print_reversed_animation([self._instructions.get_you_win()]) #print an animation for the you win message
                     self._terminal_service.write_text("\n".join(self._instructions.get_you_win())) #keep the title persistent since the animation clear the screen
@@ -90,12 +90,12 @@ class Director:
         
                 if not self._is_playing: #if the game is over
                     self._jumper.guessed_wrong() #Update the last jumper line (change the head to an x)
-                    self._do_outputs() #print the jumper and the reamiaining word list
+                    self.do_outputs() #print the jumper and the reamiaining word list
                     self._terminal_service.print_reversed_animation([self._instructions.get_you_lose()]) #Print an animation with the title you lose
                     self._terminal_service.write_text("\n".join(self._instructions.get_you_lose())) #keeps the title persistent
                     self._terminal_service.write_text(f"The word was: {self._word.upper()}") #Print the correct word
                     
-    def _do_outputs(self):
+    def do_outputs(self):
         """Do outputs life cycle.
         
             Args:
